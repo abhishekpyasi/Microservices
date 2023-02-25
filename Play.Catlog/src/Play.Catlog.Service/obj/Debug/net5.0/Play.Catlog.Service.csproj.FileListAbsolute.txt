@@ -31,3 +31,16 @@ C:\Users\abhis\Documents\Development\DotNet\MicroServices\Play.Catlog\src\Play.C
 C:\Users\abhis\Documents\Development\DotNet\MicroServices\Play.Catlog\src\Play.Catlog.Service\obj\Debug\net5.0\Play.Catlog.Service.pdb
 C:\Users\abhis\Documents\Development\DotNet\MicroServices\Play.Catlog\src\Play.Catlog.Service\obj\Debug\net5.0\Play.Catlog.Service.genruntimeconfig.cache
 C:\Users\abhis\Documents\Development\DotNet\MicroServices\Play.Catlog\src\Play.Catlog.Service\obj\Debug\net5.0\ref\Play.Catlog.Service.dll
+C:\Users\abhis\Documents\Development\DotNet\MicroServices\Play.Catlog\src\Play.Catlog.Service\bin\Debug\net5.0\AWSSDK.Core.dll
+C:\Users\abhis\Documents\Development\DotNet\MicroServices\Play.Catlog\src\Play.Catlog.Service\bin\Debug\net5.0\AWSSDK.SecurityToken.dll
+C:\Users\abhis\Documents\Development\DotNet\MicroServices\Play.Catlog\src\Play.Catlog.Service\bin\Debug\net5.0\DnsClient.dll
+C:\Users\abhis\Documents\Development\DotNet\MicroServices\Play.Catlog\src\Play.Catlog.Service\bin\Debug\net5.0\MongoDB.Bson.dll
+C:\Users\abhis\Documents\Development\DotNet\MicroServices\Play.Catlog\src\Play.Catlog.Service\bin\Debug\net5.0\MongoDB.Driver.dll
+C:\Users\abhis\Documents\Development\DotNet\MicroServices\Play.Catlog\src\Play.Catlog.Service\bin\Debug\net5.0\MongoDB.Driver.Core.dll
+C:\Users\abhis\Documents\Development\DotNet\MicroServices\Play.Catlog\src\Play.Catlog.Service\bin\Debug\net5.0\MongoDB.Libmongocrypt.dll
+C:\Users\abhis\Documents\Development\DotNet\MicroServices\Play.Catlog\src\Play.Catlog.Service\bin\Debug\net5.0\SharpCompress.dll
+C:\Users\abhis\Documents\Development\DotNet\MicroServices\Play.Catlog\src\Play.Catlog.Service\bin\Debug\net5.0\Snappier.dll
+C:\Users\abhis\Documents\Development\DotNet\MicroServices\Play.Catlog\src\Play.Catlog.Service\bin\Debug\net5.0\ZstdSharp.dll
+C:\Users\abhis\Documents\Development\DotNet\MicroServices\Play.Catlog\src\Play.Catlog.Service\bin\Debug\net5.0\runtimes\linux\native\libmongocrypt.so
+C:\Users\abhis\Documents\Development\DotNet\MicroServices\Play.Catlog\src\Play.Catlog.Service\bin\Debug\net5.0\runtimes\osx\native\libmongocrypt.dylib
+C:\Users\abhis\Documents\Development\DotNet\MicroServices\Play.Catlog\src\Play.Catlog.Service\bin\Debug\net5.0\runtimes\win\native\mongocrypt.dll

@@ -10,7 +10,8 @@ using Play.Catlog.Service.Entities;
 
 namespace Play.Catlog.Service.Repositories
 {
-    public class ItemsRepository
+
+    public class ItemsRepository : IItemsRepository
     {
 
         private const string collectionName = "Items"; // group of objects in DB its like table
@@ -32,6 +33,8 @@ namespace Play.Catlog.Service.Repositories
         // client is expecting readonly collection of items so return type is Task of IReadonlyCollection
         // FilterDefinitions are a fast and intuitive way to create filters. 
         //They require less processing then using expressions and offer a lot of methods for you to use.
+        //PS C:\Users\abhis\Documents\Development\DotNet\MicroServices> 
+        // docker run -d --rm --name mongo -p 27017:27017 -v mongodbdata:/data/db
 
         public async Task<IReadOnlyCollection<Item>> GetAllAsync()
 
@@ -43,7 +46,7 @@ namespace Play.Catlog.Service.Repositories
 
         }
 
-        public async Task<Item> GetItem(Guid id)
+        public async Task<Item> GetItemAsync(Guid id)
         {
             // create equality filter for finding record associated with ID
             FilterDefinition<Item> filter = filterbuilder.Eq(entity => entity.Id, id);

@@ -7,6 +7,15 @@ namespace Play.Catlog.Service.Entities
 {
     public class Item
     {
+        public Item(Guid id, string name, string description, decimal price, DateTimeOffset createdDate)
+        {
+            Id = id;
+            Name = name;
+            Description = description;
+            this.price = price;
+            CreatedDate = createdDate;
+        }
+
         public Guid Id { get; set; }
 
         public string Name { get; set; }

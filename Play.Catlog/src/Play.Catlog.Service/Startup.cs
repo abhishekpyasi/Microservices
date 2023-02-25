@@ -6,19 +6,27 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
 using MongoDB.Bson.Serialization.Serializers;
+using MongoDB.Driver;
+using Play.Catlog.Service.Entities;
+using Play.Catlog.Service.Repositories;
+using Play.Catlog.Service.Settings;
 
 namespace Play.Catlog.Service
 {
     public class Startup
     {
+
+        private ServiceSettings serviceSettings;
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -32,6 +40,47 @@ namespace Play.Catlog.Service
 
             BsonSerializer.RegisterSerializer(new GuidSerializer(BsonType.String));
             BsonSerializer.RegisterSerializer(new DateTimeOffsetSerializer(BsonType.String));
+            /*So with that we are deserializing the value
+
+        of ServiceSettings that has already been loaded
+
+        into .NET conversion system
+
+        into this ServiceSettings variable here.*/
+
+            serviceSettings = Configuration.GetSection(nameof(ServiceSettings)).Get<ServiceSettings>();
+            Console.WriteLine(serviceSettings.ToString());
+
+            /*  Configuration.GetSection(nameof(serviceSettings)).Get<ServiceSettings>();
+            Attempts to bind (deserialize) the configuration instance to a new instance of type T. If this configuration section has a value, that will be used. Otherwise binding by matching property names against configuration keys recursively.
+            Returns:      The new instance of T if successful, default(T) otherwise. */
+
+
+            services.AddSingleton<IMongoDatabase>((ServiceProvider) =>
+            //Adds a singleton service of the type specified in IMongoDatabase with a 
+            //factory specified in implementationFactory to the specified IServiceCollection
+            //constructing IMongoDatabse and registering it with service container.
+
+            {
+
+                var mongoDbSettings = Configuration.GetSection(nameof(MongoDbSettings)).Get<MongoDbSettings>();
+                var mongoClient = new MongoClient(mongoDbSettings.ConnectionString);
+                return mongoClient.GetDatabase(serviceSettings.ServiceName);
+            });
+
+            services.AddSingleton<IRepository<Item>>(ServiceProvider =>
+            {
+
+                var database = ServiceProvider.GetService<IMongoDatabase>();
+
+                return new MongoRepository<Item>(database, "Items");
+    
+
+
+            });
+
+
+
 
             services.AddControllers(options =>
             {

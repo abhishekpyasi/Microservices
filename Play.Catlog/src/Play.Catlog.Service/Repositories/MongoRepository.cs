@@ -11,23 +11,23 @@ using Play.Catlog.Service.Entities;
 namespace Play.Catlog.Service.Repositories
 {
 
-    public class ItemsRepository : IItemsRepository
+    public class MongoRepository<T> : IRepository<T> where T : IEntity
     {
 
-        private const string collectionName = "Items"; // group of objects in DB its like table
+        // private const string collectionName = "Items"; // group of objects in DB its like table
 
-        private readonly MongoCollectionBase<Item> dbCollection; // represent a Type collection
+        private readonly MongoCollectionBase<T> dbCollection; // represent a Type collection
 
-        private readonly FilterDefinitionBuilder<Item> filterbuilder = Builders<Item>.Filter; // to query info from Mongo DB you need to create filter 
+        private readonly FilterDefinitionBuilder<T> filterbuilder = Builders<T>.Filter; // to query info from Mongo DB you need to create filter 
 
-        public ItemsRepository()
+        public MongoRepository(IMongoDatabase database, string collectionName)
         {
             //connect to mongodb
 
-            var mongoClient = new MongoClient("mongodb://localhost:27017"); // to connect to DB with connection string
-            var database = mongoClient.GetDatabase("Catalog"); // Database object
+            /*   var mongoClient = new MongoClient("mongodb://localhost:27017"); // to connect to DB with connection string
+             // var database = mongoClient.GetDatabase("Catalog"); // Database object */
             // dbcollection object for doing operation
-            dbCollection = (MongoCollectionBase<Item>)database.GetCollection<Item>(collectionName);
+            dbCollection = (MongoCollectionBase<T>)database.GetCollection<T>(collectionName);
 
         }
         // client is expecting readonly collection of items so return type is Task of IReadonlyCollection
@@ -36,7 +36,7 @@ namespace Play.Catlog.Service.Repositories
         //PS C:\Users\abhis\Documents\Development\DotNet\MicroServices> 
         // docker run -d --rm --name mongo -p 27017:27017 -v mongodbdata:/data/db
 
-        public async Task<IReadOnlyCollection<Item>> GetAllAsync()
+        public async Task<IReadOnlyCollection<T>> GetAllAsync()
 
         {
 
@@ -46,14 +46,14 @@ namespace Play.Catlog.Service.Repositories
 
         }
 
-        public async Task<Item> GetItemAsync(Guid id)
+        public async Task<T> GetItemAsync(Guid id)
         {
             // create equality filter for finding record associated with ID
-            FilterDefinition<Item> filter = filterbuilder.Eq(entity => entity.Id, id);
+            FilterDefinition<T> filter = filterbuilder.Eq(entity => entity.Id, id);
             return await dbCollection.Find(filter).FirstOrDefaultAsync();
         }
 
-        public async Task CreateAsync(Item entity) // not returning anything to  client no type parameter for Task
+        public async Task CreateAsync(T entity) // not returning anything to  client no type parameter for Task
         {
 
             if (entity == null)
@@ -66,7 +66,7 @@ namespace Play.Catlog.Service.Repositories
 
         }
 
-        public async Task UpdateAsync(Item entity)
+        public async Task UpdateAsync(T entity)
         {
             if (entity == null)
             {
@@ -75,7 +75,7 @@ namespace Play.Catlog.Service.Repositories
 
             }
 
-            FilterDefinition<Item> filter = filterbuilder.Eq(existingentity => existingentity.Id, entity.Id);
+            FilterDefinition<T> filter = filterbuilder.Eq(existingentity => existingentity.Id, entity.Id);
             await dbCollection.ReplaceOneAsync(filter, entity);
 
 
@@ -84,7 +84,7 @@ namespace Play.Catlog.Service.Repositories
         public async Task RemoveAsync(Guid id)
         {
 
-            FilterDefinition<Item> filter = filterbuilder.Eq(entity => entity.Id, id);
+            FilterDefinition<T> filter = filterbuilder.Eq(entity => entity.Id, id);
             await dbCollection.DeleteOneAsync(filter);
         }
 

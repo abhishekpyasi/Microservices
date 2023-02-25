@@ -14,7 +14,12 @@ namespace Play.Catlog.Service.Controllers
     [Route("Items")]
     public class ItemsController : ControllerBase
     {
-        private readonly IItemsRepository itemsRepository;
+        private readonly IRepository<Item> itemsRepository;
+
+        public ItemsController(IRepository<Item> itemsRepository)
+        {
+            this.itemsRepository = itemsRepository;
+        }
 
         [HttpGet]
         public async Task<ActionResult<ItemDto>> GetAsync()

@@ -5,7 +5,8 @@ using System.Threading.Tasks;
 
 namespace Play.Catlog.Service.Entities
 {
-    public class Item
+
+    public class Item : IEntity
     {
         public Item(Guid id, string name, string description, decimal price, DateTimeOffset createdDate)
         {

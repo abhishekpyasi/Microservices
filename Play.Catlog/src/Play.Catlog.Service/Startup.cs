@@ -37,36 +37,36 @@ namespace Play.Catlog.Service
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            /*  
+                        BsonSerializer.RegisterSerializer(new GuidSerializer(BsonType.String));
+                        BsonSerializer.RegisterSerializer(new DateTimeOffsetSerializer(BsonType.String));
+                        /*So with that we are deserializing the value
 
-            BsonSerializer.RegisterSerializer(new GuidSerializer(BsonType.String));
-            BsonSerializer.RegisterSerializer(new DateTimeOffsetSerializer(BsonType.String));
-            /*So with that we are deserializing the value
+                    of ServiceSettings that has already been loaded
 
-        of ServiceSettings that has already been loaded
+                    into .NET conversion system
 
-        into .NET conversion system
+                    into this ServiceSettings variable here.
 
-        into this ServiceSettings variable here.*/
+                        serviceSettings = Configuration.GetSection(nameof(ServiceSettings)).Get<ServiceSettings>();
+                        Console.WriteLine(serviceSettings.ToString());
 
-            serviceSettings = Configuration.GetSection(nameof(ServiceSettings)).Get<ServiceSettings>();
-            Console.WriteLine(serviceSettings.ToString());
-
-            /*  Configuration.GetSection(nameof(serviceSettings)).Get<ServiceSettings>();
-            Attempts to bind (deserialize) the configuration instance to a new instance of type T. If this configuration section has a value, that will be used. Otherwise binding by matching property names against configuration keys recursively.
-            Returns:      The new instance of T if successful, default(T) otherwise. */
+                        /*  Configuration.GetSection(nameof(serviceSettings)).Get<ServiceSettings>();
+                        Attempts to bind (deserialize) the configuration instance to a new instance of type T. If this configuration section has a value, that will be used. Otherwise binding by matching property names against configuration keys recursively.
+                        Returns:      The new instance of T if successful, default(T) otherwise. 
 
 
-            services.AddSingleton<IMongoDatabase>((ServiceProvider) =>
-            //Adds a singleton service of the type specified in IMongoDatabase with a 
-            //factory specified in implementationFactory to the specified IServiceCollection
-            //constructing IMongoDatabse and registering it with service container.
+                        services.AddSingleton<IMongoDatabase>((ServiceProvider) =>
+                        //Adds a singleton service of the type specified in IMongoDatabase with a 
+                        //factory specified in implementationFactory to the specified IServiceCollection
+                        //constructing IMongoDatabse and registering it with service container.
 
-            {
+                        {
 
-                var mongoDbSettings = Configuration.GetSection(nameof(MongoDbSettings)).Get<MongoDbSettings>();
-                var mongoClient = new MongoClient(mongoDbSettings.ConnectionString);
-                return mongoClient.GetDatabase(serviceSettings.ServiceName);
-            });
+                            var mongoDbSettings = Configuration.GetSection(nameof(MongoDbSettings)).Get<MongoDbSettings>();
+                            var mongoClient = new MongoClient(mongoDbSettings.ConnectionString);
+                            return mongoClient.GetDatabase(serviceSettings.ServiceName);
+                        }); 
 
             services.AddSingleton<IRepository<Item>>(ServiceProvider =>
             {
@@ -74,12 +74,16 @@ namespace Play.Catlog.Service
                 var database = ServiceProvider.GetService<IMongoDatabase>();
 
                 return new MongoRepository<Item>(database, "Items");
-    
 
 
-            });
+
+            });*/
 
 
+            serviceSettings = Configuration.GetSection(nameof(ServiceSettings)).Get<ServiceSettings>();
+
+            services.AddMongo();
+            services.AddMongoRepo<Item>("Items");
 
 
             services.AddControllers(options =>

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
@@ -88,5 +89,15 @@ namespace Play.Common.Settings
             await dbCollection.DeleteOneAsync(filter);
         }
 
+        async Task<IReadOnlyCollection<T>> IRepository<T>.GetAllAsync(Expression<Func<T, bool>> filter)
+        {
+            return await dbCollection.Find(filter).ToListAsync();
+        }
+
+        async Task<T> IRepository<T>.GetItemAsync(Expression<Func<T, bool>> filter)
+        {
+            return await dbCollection.Find(filter).FirstOrDefaultAsync();
+
+        }
     }
 }

@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc;
 using Play.Catlog.Service.DTO;
 using Play.Catlog.Service.Entities;
-using Play.Catlog.Service.Repositories;
+using Play.Common;
 
 namespace Play.Catlog.Service.Controllers
 {

@@ -1197,11 +1197,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\abhis\\Documents\\Development\\DotNet\\MicroServices\\Play.Catlog\\src\\Play.Catlog.Service\\Play.Catlog.Service.csproj",
-      "projectName": "Play.Catlog.Service",
-      "projectPath": "C:\\Users\\abhis\\Documents\\Development\\DotNet\\MicroServices\\Play.Catlog\\src\\Play.Catlog.Service\\Play.Catlog.Service.csproj",
+      "projectUniqueName": "C:\\Users\\abhis\\Documents\\Development\\DotNet\\MicroServices\\Play.Inventory\\src\\Play.Inventory.Service\\Play.Inventory.Service.csproj",
+      "projectName": "Play.Inventory.Service",
+      "projectPath": "C:\\Users\\abhis\\Documents\\Development\\DotNet\\MicroServices\\Play.Inventory\\src\\Play.Inventory.Service\\Play.Inventory.Service.csproj",
       "packagesPath": "C:\\Users\\abhis\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\abhis\\Documents\\Development\\DotNet\\MicroServices\\Play.Catlog\\src\\Play.Catlog.Service\\obj\\",
+      "outputPath": "C:\\Users\\abhis\\Documents\\Development\\DotNet\\MicroServices\\Play.Inventory\\src\\Play.Inventory.Service\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\abhis\\AppData\\Roaming\\NuGet\\NuGet.Config",

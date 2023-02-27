@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ugoTiaLC1aBWHqwcpZ14UFSKv8IoitKZ9rorqpFYxOGH+ZbS5GHSD2IHDmbNzm4rgIPU/QlAB+m8ObRJAHU4TA==",
+  "dgSpecHash": "qo0f6cfaH2VrWC7qfSiptJL75lbvT/GPhfkVIY6Q5sDEooaOAcAbWraYFEY3ASCIWhho4l8UwACUlcnYEE9PAg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\abhis\\Documents\\Development\\DotNet\\MicroServices\\Play.Catlog\\src\\Play.Catlog.Service\\Play.Catlog.Service.csproj",
+  "projectFilePath": "C:\\Users\\abhis\\Documents\\Development\\DotNet\\MicroServices\\Play.Inventory\\src\\Play.Inventory.Service\\Play.Inventory.Service.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\abhis\\.nuget\\packages\\awssdk.core\\3.7.100.14\\awssdk.core.3.7.100.14.nupkg.sha512",
     "C:\\Users\\abhis\\.nuget\\packages\\awssdk.securitytoken\\3.7.100.14\\awssdk.securitytoken.3.7.100.14.nupkg.sha512",

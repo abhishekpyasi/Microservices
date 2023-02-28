@@ -9,6 +9,9 @@ namespace Play.Inventory.Service
 
     public record InventoryItemDto(Guid CatalogItemId, int Quantity, DateTimeOffset AcquireDate);
 
+    public record CatalogItemDto(Guid Id, string Name, string Description);
+
+
 
 
 }
